@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carbon Credit Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Carbon Credit Calculator</h1>
+  
+  <label for="baseline-emissions">Baseline Emissions (metric tons CO2e): </label>
+  <input type="number" id="baseline-emissions"><br><br>
+  
+  <label for="project-emissions">Project Emissions (metric tons CO2e): </label>
+  <input type="number" id="project-emissions"><br><br>
+  
+  <button onclick="calculateCarbonCredits()">Calculate Carbon Credits</button>
+  
+  <h2 id="carbon-credits">Carbon Credits: </h2>
+  
+  <script>
+    function calculateCarbonCredits() {
+      const baselineEmissions = parseFloat(document.getElementById("baseline-emissions").value);
+      const projectEmissions = parseFloat(document.getElementById("project-emissions").value);
+      
+      if (isNaN(baselineEmissions) || isNaN(projectEmissions)) {
+        alert("Please enter valid numeric values for emissions.");
+        return;
+      }
+      
+      const emissionReductions = baselineEmissions - projectEmissions;
+      
+      const carbonCreditsElement = document.getElementById("carbon-credits");
+      carbonCreditsElement.textContent = "Carbon Credits: " + emissionReductions.toFixed(2) + " metric tons CO2e";
+    }
+  </script>
+</body>
+</html>
